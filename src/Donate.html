@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+.navbar{
+    background-color: #4a868e !important;
+}
+
+
+.container {
+	width: 2000vh;
+	display: flex;
+	flex-wrap:nowrap;
+	margin: 40vh;
+	justify-content:center;
+}
+.container .btn {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 250px;
+	height: 50px;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.container .btn a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #4a868e;
+	box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 30px;
+	padding: 10px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	overflow: hidden;
+	color: white;
+	font-weight: bold;
+	z-index: 1;
+	transition: 0.5s;
+	backdrop-filter: blur(15px);
+}
+.container .btn:hover a {
+	letter-spacing: 3px;
+}
+.container .btn a::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+	transform: skewX(45deg) translate(0);
+	transition: 0.5s;
+	filter: blur(0px);
+}
+.container .btn:hover a::before {
+	transform: skewX(45deg) translate(200px);
+}
+.container .btn::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+	bottom: -5px;
+	width: 30px;
+	height: 10px;
+	background: #f00;
+	border-radius: 10px;
+	transition: 0.5s;
+	transition-delay: 0.5;
+}
+.container .btn:hover::before /*lightup button*/ {
+	bottom: 0;
+	height: 50%;
+	width: 80%;
+	border-radius: 30px;
+}
+
+.container .btn::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translatex(-50%);
+	top: -5px;
+	width: 30px;
+	height: 10px;
+	background: #f00;
+	border-radius: 10px;
+	transition: 0.5s;
+	transition-delay: 0.5;
+}
+.container .btn:hover::after /*lightup button*/ {
+	top: 0;
+	height: 50%;
+	width: 80%;
+	border-radius: 30px;
+}
+.container .btn:nth-child(1)::before, /*chnage 1*/
+.container .btn:nth-child(1)::after {
+	background: #ff1f71;
+	box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71,
+		0 0 60px #ff1f71;
+}
+.container .btn:nth-child(2)::before, /* 2*/
+.container .btn:nth-child(2)::after {
+	background: #2db2ff;
+	box-shadow: 0 0 5px #2db2ff, 0 0 15px #2db2ff, 0 0 30px #2db2ff,
+		0 0 60px #2db2ff;
+}
+.container .btn:nth-child(3)::before, /* 3*/
+.container .btn:nth-child(3)::after {
+	background: #1eff45;
+	box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45,
+		0 0 60px #1eff45;
+}
+.container .btn:nth-child(4)::before, /* 3*/
+.container .btn:nth-child(4)::after {
+	background: #d8ee10;
+	box-shadow: 0 0 5px #d8ee10, 0 0 15px #d8ee10, 0 0 30px #d8ee10,
+		0 0 60px #d8ee10;
+}
+
+.popup{
+    background: hsla(0, 91%, 46%, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 0 5px 0 ;
+    background: inherit;
+    backdrop-filter: blur(20px);
+}
+
+.popup-content
+{
+    height: 250px;
+    width:500px;
+    background: inherit;
+    padding:20px;
+    border-radius: 5px;
+    position: relative;
+    top: 200px;
+}
+
+input{
+    margin: 20px auto;
+    display: block;
+    width: 50%;
+    padding: 8px;
+    border: 1px solid gray;
+
+
+}
+
+
+.close{
+    position:absolute;
+    top: 3px;
+    right: 1px;
+    background: #fff;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    box-shadow: 6px 6px 29px -4px rgba(0,0,0,0.75);
+    cursor: pointer;
+}
+
+#decentralized_address {
+    color: black;
+    top: 80px;
+    font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+    left: 170px;
+}
+
+
+
+    </style>
+
+    <title>Donate</title>
+</head>
+<body>
+    <style>
+        body {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url(donate-bg.jpg) no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top py-4">
+            <a class="navbar-brand" href="#"><b>&nbsp;&nbsp;Donator Portal</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Home</a>
+                <a class="nav-item nav-link active " href=Donate.html>Donators</a>
+                <a class="nav-item nav-link" href=Receive.html>Recipients</a>
+                <a class="nav-item nav-link" href=About.html>Claims</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <p id="decentralized_address" style="margin-top: 60px;"> Your decentralized address : </p>
+    </div>
+
+
+    <div class="container">
+		<div class="btn" id="button" style="padding-right: 10px;"><a>Register</a></div>
+		<div class="btn" id="donor_unreg_btn"><a>Un-Register</a></div>
+		<div class="btn" id="donor_donate_btn"><a>Make Donation</a></div>
+        <div class="btn" id="transfer_token_btn"><a>Transfer RELIVES</a></div>
+	</div>
+    
+    <div class="popup">
+        <div class="popup-content">
+            <img src="close.jpg" alt="Close" class="close" id="close">
+
+            <input type="text" id="donor_details" class="input is-rounded" type="text" placeholder="Enter Your Details :">
+            <input type="number" min="0" step="1" id="donor_amount" class="input is-rounded" type="text" placeholder="Enter Donation Amount"><br>
+            <a href="#" class="button is-danger is-active" id="reg_donate_btn">Register</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="popup" id="unreg_popup">
+        <div class="popup-content">
+            <img src="close.jpg" alt="Close" class="close" id="unreg_close">
+
+            <p style="font-family: sans-serif; font-weight: bold;">Click on Unregister button to confirm!!</p>
+            <a href="#" class="button is-danger is-active" id="unreg_donate_btn">Unregister</a>
+
+        </div>
+
+    </div>
+
+    <div class="popup" id="donate_popup">
+        <div class="popup-content">
+            <img src="close.jpg" alt="Close" class="close" id="donate_close">
+
+            <input type="number" min="0" step="1" id="donor_amount1" class="input is-rounded" placeholder="Enter Donation Amount"><br>
+            <a href="#" class="button is-danger is-active" id="donate_btn">Donate</a>
+
+        </div>
+
+    </div>
+
+    <div class="popup" id="transfer_popup">
+        <div class="popup-content">
+            <img src="close.jpg" alt="Close" class="close" id="transfer_close">
+
+            <input type="text" id="address_rec_dec" class="input is-rounded" type="text" placeholder="Enter Reciever decentralized id :">
+            <input type="number" min="0" step="1" id="token_amt" class="input is-rounded" placeholder="Enter Token Amount"><br>
+            <a href="#" class="button is-danger is-active" id="transfer_btn">Make Trnsfer</a>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        document.getElementById("button").addEventListener("click", function(){
+            document.querySelector(".popup").style.display="flex";
+        })
+
+        document.getElementById("donor_unreg_btn").addEventListener("click", function(){
+            document.querySelector("#unreg_popup").style.display="flex";
+        })
+
+        document.getElementById("donor_donate_btn").addEventListener("click", function(){
+            document.querySelector("#donate_popup").style.display="flex";
+        })
+
+        document.getElementById("transfer_token_btn").addEventListener("click", function(){
+            document.querySelector("#transfer_popup").style.display="flex";
+        })
+
+        document.getElementById("reg_donate_btn").addEventListener("click", function() {
+            document.querySelector(".popup").style.display="none";
+            register_donor(document.getElementById('donor_details').value, document.getElementById('donor_amount').value );
+        })
+
+        document.getElementById("unreg_donate_btn").addEventListener("click", function() {
+            document.querySelector("#unreg_popup").style.display="none";
+            unregister_donor(0);
+        })
+
+        document.getElementById("donate_btn").addEventListener("click", function() {
+            document.querySelector("#donate_popup").style.display="none";
+            makeDonation(document.getElementById('donor_amount1').value);
+        })
+
+        document.getElementById("transfer_btn").addEventListener("click", function() {
+            document.querySelector("#transfer_popup").style.display="none";
+            transferTokens(document.getElementById('address_rec_dec').value, 
+            document.getElementById('token_amt').value);
+        })
+
+        document.getElementById("close").addEventListener("click", function(){
+            document.querySelector(".popup").style.display="none";
+        })
+
+        document.getElementById("unreg_close").addEventListener("click", function(){
+            document.querySelector("#unreg_popup").style.display="none";
+        })
+
+        document.getElementById("donate_close").addEventListener("click", function(){
+            console.log("close donate")
+            document.querySelector("#donate_popup").style.display="none";
+        })
+
+        document.getElementById("transfer_close").addEventListener("click", function(){
+            document.querySelector("#transfer_popup").style.display="none";
+        })
+    </script>
+   
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script  language="JavaScript" type="text/javascript" src="app.js"></script>
+</html>

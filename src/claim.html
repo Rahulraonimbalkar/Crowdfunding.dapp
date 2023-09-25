@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        function Redirect() {
+           location.href="Receive.html";
+        }
+     </script>
+	<title>Claimant Registration</title>
+	<link rel="stylesheet" type="text/css" href="claim.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="row justify-content-md-center">
+        <p id="decentralized_address" style="margin-top: 60px;"> Your decentralized address : </p>
+    </div>
+
+	<div class="cl_div">
+		<div class="claim_det">
+			<form id = "cchange">
+
+                <label for="chk" aria-hidden="true"> Enter details!</label>
+
+                <input type="number" min="0" step="1" id="cl_amount" class="input is-rounded" placeholder="Enter amount to request:">
+                <input type="text" id="cl_docId" class="input is-rounded" placeholder="Enter document id:">
+                <input type="text" id="cl_docId" class="input is-rounded" placeholder="Enter Reason for claim">
+                <input type="text" id="cl_zip" class="input is-rounded" placeholder="Enter ZipCode:">
+                <input type="button" id="cl_sub_btn" value="Start a claim!!" onclick='callCreateClaim();'/>
+                    
+			</form>
+		</div>
+	</div>
+
+    <script>
+        function callCreateClaim() {
+            createClaim(document.getElementById('cl_amount').value, 
+			document.getElementById('cl_docId').value,
+			document.getElementById('cl_docId').value, document.getElementById('cl_zip').value)
+
+            // setTimeout( function() { Redirect(); }, 5500);
+        }
+    </script>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="app.js"></script>
+</html>

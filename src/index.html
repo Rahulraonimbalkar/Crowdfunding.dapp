@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Relief Funds</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="app.css" >
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!--Stylesheets-->
+    <style media="screen">
+    	*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #0855ae;
+}
+.popup{
+    background-color: #ffffff;
+    width: 530px;
+    height: 200px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-55%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
+    text-align: center;
+}
+.popup button{
+    display: block;
+    margin:  0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #ffffff;
+		background: #03549a;
+		border-radius: 100%;
+		width: 40px;
+		height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.popup h2{
+	margin-top: -20px;
+}
+.popup p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
+}
+a{
+    display: block;
+    width: 150px;
+    position: relative;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #0f72e5;
+		border-radius: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 0;
+}
+    </style>
+</head>
+<body>
+   
+    <!-- <p id="bgid" style="background-image: url('bgp.jpg')"></p> -->
+
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top py-4">
+            <a class="navbar-brand" href="#"><b>&nbsp;&nbsp;Relief Funds</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link active ">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href=Donate.html>Donators</a>
+                <a class="nav-item nav-link" href=Receive.html>Recipients</a>
+                <a class="nav-item nav-link" href=About.html>Claims</a>
+              </div>
+            </div>
+          </nav>
+    </div>
+
+
+
+    <div class="row justify-content-md-center">
+        <p id="decentralized_address" style="margin-top: 60px;"> Your decentralized address : </p>
+        <p></p>
+    </div>
+
+
+    <button type="button" id="airdrop"
+    style="position:absolute;top:270px;width:150px;left:658px;height: 40px;font-weight: bold;font-size: large; display: none;">
+    AirDrop!!</button>
+
+    <button type="button" id="fund_btn" class="btn btn-outline-info" 
+    style="position:absolute;top:350px;width:500px;left:480px;height: 70px;font-weight: bold;font-size: large;">
+    Click Here for Available Funds!</button>
+
+    <button type="button" id="show_claim" class="btn btn-outline-info" 
+    style="position:absolute;top:450px;width:500px;left:480px;height: 70px;font-weight: bold;font-size: large;">
+    Click Here for Total Claims!</button>
+
+    <button type="button" id="token_btn" class="btn btn-outline-info" 
+    style="position:absolute;top:550px;width:500px;left:480px;height: 70px;font-weight: bold;font-size: large;">
+    Click Here for Available Tokens!</button>
+
+    <div class="popup">
+        <button id="close">&times;</button>
+        <p id="total_funds_avail" style="font-size:large;font-weight: bold;">
+        </p>
+    </div>
+
+
+    <script type="text/javascript">
+        window.addEventListener("load", function(){
+            document.querySelector(".popup").style.display = "none";
+        });
+        
+        
+        document.querySelector("#close").addEventListener("click", function(){
+            document.querySelector(".popup").style.display = "none";
+            document.querySelector("#airdrop").style.display = "block";
+            document.querySelector("#show_claim").style.display = "block";
+            document.querySelector("#token_btn").style.display = "block";
+            document.querySelector("#fund_btn").style.display = "block";
+        });
+
+        document.getElementById('airdrop').addEventListener('click', () => {
+            var success=1;
+
+            var tmp = async function(){
+                try{
+                    await Contract.methods.claimNewUserTokens(currentAccount).send({from:currentAccount});
+                } 
+                catch(e){
+                    success=0;
+                    alert("Transaction failed");
+                }
+            }
+            tmp().then((val)=>{
+                console.log(val);
+                if(success==1){
+                    alert("Tokens Claimed!!!");
+                    document.querySelector("#airdrop").className = "btn btn-info" + " disabled";
+                }
+            });
+        });
+
+        document.getElementById('fund_btn').addEventListener('click', () => {
+            const form = document.getElementById('total_funds_avail');
+            var success=1;
+
+            console.log("funds call")
+
+
+            var tmp = async function(){
+                try{
+                    // role_bytes32 = web3.utils.padLeft(web3.utils.asciiToHex(role), 64);
+                    var val = await Contract.methods.getFundsAvailable().call();
+                    form.innerHTML = "Total funds available in reserve: " + val
+                    console.log("sum: " + val + ", total claims: " + claims)
+                } 
+                catch(e){
+                    success=0;
+                    alert("Transaction failed");
+                }
+            }
+            tmp().then((val)=>{
+                console.log(val);
+                if(success==1){
+                    alert("Success");
+                }
+            });
+
+            setTimeout(
+                function open(event){
+                    document.querySelector(".popup").style.display = "block";
+                    document.querySelector("#show_claim").style.display = "none";
+                    document.querySelector("#token_btn").style.display = "none";
+                    document.querySelector("#fund_btn").style.display = "none";
+                    document.querySelector("#airdrop").style.display = "none";
+                }, 2000
+            )
+        });
+
+        document.getElementById('token_btn').addEventListener('click', () => {
+            const form = document.getElementById('total_funds_avail');
+            var success=1;
+
+            console.log("tokens call")
+
+
+            var tmp = async function(){
+                try{
+                    // role_bytes32 = web3.utils.padLeft(web3.utils.asciiToHex(role), 64);
+                    var val = await Contract.methods.balanceOf(currentAccount).call();
+                    form.innerHTML = "Available Tokens: " + (val / 1e18) + " RELIVES"
+                    console.log("tokens: " + val)
+                } 
+                catch(e){
+                    success=0;
+                    alert("Transaction failed");
+                }
+            }
+            tmp().then((val)=>{
+                console.log(val);
+                if(success==1){
+                    alert("Success");
+                }
+            });
+
+            setTimeout(
+                function open(event){
+                    document.querySelector(".popup").style.display = "block";
+                    document.querySelector("#show_claim").style.display = "none";
+                    document.querySelector("#token_btn").style.display = "none";
+                    document.querySelector("#fund_btn").style.display = "none";
+                    document.querySelector("#airdrop").style.display = "none";
+                }, 2000
+            )
+        });
+
+        document.getElementById('show_claim').addEventListener('click', () => {
+            const form = document.getElementById('total_funds_avail');
+            var success=1;
+
+            console.log("Claims call")
+
+
+            var tmp = async function(){
+                try{
+                    // role_bytes32 = web3.utils.padLeft(web3.utils.asciiToHex(role), 64);
+                    var val = await Contract.methods.getTotalClaims().call();
+                    form.innerHTML = "Total Claims Listed: " + (val-1)
+                    console.log("sum: " + val + ", total claims: " + claims)
+                } 
+                catch(e){
+                    success=0;
+                    alert("Transaction failed");
+                }
+            }
+            tmp().then((val)=>{
+                console.log(val);
+                if(success==1){
+                    alert("Success");
+                }
+            });
+
+            setTimeout(
+                function open(event){
+                    document.querySelector(".popup").style.display = "block";
+                    document.querySelector("#show_claim").style.display = "none";
+                    document.querySelector("#token_btn").style.display = "none";
+                    document.querySelector("#fund_btn").style.display = "none";
+                    document.querySelector("#airdrop").style.display = "none";
+                }, 2000
+            )
+        });
+    </script>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="app.js"></script>
+</html>

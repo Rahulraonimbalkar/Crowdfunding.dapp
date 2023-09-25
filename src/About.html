@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+</head>
+<body style="background-color:#b8e3d7">
+
+    <style>
+        #decentralized_address {
+            color: black;
+            top: 80px;
+            font-weight: bold;
+            font-size: 30px;
+            position: absolute;
+            left: 170px;
+        }
+
+        .navbar{
+            background-color: #167784 !important;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top py-4">
+            <a class="navbar-brand" href="#"><b>&nbsp;&nbsp;Public Portal</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Home</a>
+                <a class="nav-item nav-link" href=Donate.html>Donators</a>
+                <a class="nav-item nav-link" href=Receive.html>Recipients</a>
+                <a class="nav-item nav-link active" href=About.html>Claims</a>
+            </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <p id="decentralized_address" style="margin-top: 60px;"> Your decentralized address : </p>
+        <p></p>
+    </div>
+
+    <button type="button" id="claims_rec_button" class="btn btn-outline-success" 
+    style="position:absolute;top:270px;width:500px;left:480px;height: 70px;font-weight: bold;font-size: large;"
+    onclick="showParticularClaims()">Click here for Your Claims!!</button>
+
+    <button type="button" id="claims_button" class="btn btn-outline-success" 
+    style="position:absolute;top:370px;width:500px;left:480px;height: 70px;font-weight: bold;font-size: large;"
+    onclick="showClaims()">Click here for All Claims!!</button>
+
+    <div id="claim_list"></div>
+
+    <h3 id="no_claims_text" 
+    style="display:none;position:absolute;top:370px;width:500px;left:580px;height: 70px;font-weight: bold;font-size: large;">
+    "No Claims YET!!!"</h3>
+
+    <script>
+        function showClaims() {
+            document.getElementById("decentralized_address").style.display="none";
+            document.getElementById("claims_button").style.display="none";
+            document.getElementById("claims_rec_button").style.display="none";
+            document.getElementById("no_claims_text").style.display="none";
+            poupulateClaimsList();
+            
+        }
+
+        function showParticularClaims() {
+            document.getElementById("decentralized_address").style.display="none";
+            document.getElementById("claims_button").style.display="none";
+            document.getElementById("claims_rec_button").style.display="none";
+            document.getElementById("no_claims_text").style.display="none";
+            poupulateRecipientsClaimsList();
+        }
+    </script>
+    
+</body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="app.js"></script>
+
+</html>
